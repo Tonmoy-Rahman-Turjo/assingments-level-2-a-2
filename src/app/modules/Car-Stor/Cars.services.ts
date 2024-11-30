@@ -27,11 +27,19 @@ const getSingleCarById = async (id: string) => {
     const result = await CarsModel.findOneAndUpdate({_id: new mongoose.Types.ObjectId(id)}, updatedFields , { new: true })
     return result
   }
+
+  /// delete car 
+  const deletCarID = async(id: string)=>{
+     const result = await CarsModel.findOneAndDelete({_id: new mongoose.Types.ObjectId(id)})
+    //  const result = await CarsModel.findOneAndDelete({id})
+     return result
+  }
 export const CarsServices = {
   CreatCarsDB,
   GetAllCarsFormDB,
   GetCarByCategoryDB,
   getSingleCarById,
-  updateCarId
+  updateCarId,
+  deletCarID
   
 };

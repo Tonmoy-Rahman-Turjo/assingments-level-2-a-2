@@ -161,10 +161,38 @@ const UpdateOneCar = async (req: Request, res:Response)=>{
     console.log(error)
   }
 }
-
+ /// deleted
+  const deletedCarsIdDB = async (req: Request, res:Response)=>{
+    const {carId} = req.params;
+    
+    if (!carId || carId.trim().length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'Car ID is required',
+        error: 'Invalid or missing Car ID',
+      });
+    }
+     const result =  await CarsServices.deletCarID(carId)
+     if (!result) {
+      return res.status(404).json({
+        success: false,
+        message: 'Car not found',
+        error: `No car found with ID: ${carId}`,
+        path: `/cars/${carId}`,
+        providedCarId: carId,
+        stack: new Error().stack,
+      });
+    }
+     res.status(200).json({
+      success: true,
+      message: 'Car deletd successfully',
+      data: {}, 
+    });
+  }
 export const CarsControlar = {
   createCars,
   GetAllCars,
   getSingleCar,
-  UpdateOneCar
+  UpdateOneCar,
+  deletedCarsIdDB
 };

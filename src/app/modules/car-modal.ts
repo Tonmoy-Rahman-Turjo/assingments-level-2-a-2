@@ -80,7 +80,7 @@ const CarSchema = new Schema<Cars>(
     quantity: {
       type: Number,
       required: true,
-      min: 1,
+      min: -0,
     },
     inStock: {
       type: Boolean,
