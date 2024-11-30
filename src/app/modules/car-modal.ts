@@ -1,5 +1,3 @@
-
-
 // import { Schema, model } from 'mongoose';
 // import { Cars } from './Car-Stor/Cars.interface';
 
@@ -34,7 +32,7 @@
 //     type: Boolean
 //   },
 //   { timestamps: true, }
-  
+
 // });
 
 // export const CarsModel = model<Cars>('Cars', CarSchema);
@@ -48,10 +46,10 @@ const CarSchema = new Schema<Cars>(
       required: true,
       trim: true,
       enum: {
-       values: ['Toyota', 'Honda', 'BMW', 'Mercedes', 'Ford'],
-        
+        values: ['Toyota', 'Honda', 'BMW', 'Mercedes', 'Ford'],
+
         message: 'Please select a valid Brand.',
-      }
+      },
     },
     model: {
       type: String,
@@ -82,7 +80,7 @@ const CarSchema = new Schema<Cars>(
     quantity: {
       type: Number,
       required: true,
-      min:0,
+      min: 1,
     },
     inStock: {
       type: Boolean,
@@ -90,8 +88,8 @@ const CarSchema = new Schema<Cars>(
     },
   },
   {
-    timestamps: true, // Adds createdAt and updatedAt fields
-  }
+    timestamps: true,
+  },
 );
 
 export const CarsModel = model<Cars>('Cars', CarSchema);

@@ -10,7 +10,8 @@ console.log('Database URL:', config.database_url);
 app.use(express.json());
 // const port = 3000
 app.use(cors());
-app.use('/api/v1/cars', carsRoute );
+app.use('/api/cars', carsRoute);
+
 // app.post('/api/v1/cars', carsRoute );
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
