@@ -65,6 +65,12 @@ const calculateRevenueDB = async (req: Request, res:Response)=>{
 
     catch(error){
         console.log(error)
+        res.status(400).json({
+            success: false,
+            message: 'Internal server error',
+            error: ' error ',
+            stack: new Error().stack,
+          });
     }
 }
 export const OrderController = {

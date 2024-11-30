@@ -43,7 +43,7 @@ const createCars = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    res.status(500).json({
+    res.status(400).json({
       success: false,
       message: 'somting rong',
       error: err,
@@ -93,7 +93,7 @@ const GetAllCars = async (req: Request, res: Response) => {
   } catch (error) {
     console.log(error);
 
-    return res.status(500).json({
+    return res.status(400).json({
       success: false,
       message: 'Internal server error',
       error: 'eroor',
@@ -128,10 +128,10 @@ const getSingleCar = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    res.status(400).json({
       success: false,
       message: 'Internal server error',
-      error: 'An error occurred while processing your request.',
+      error: ' error ',
       stack: new Error().stack,
     });
   }
@@ -159,11 +159,18 @@ const UpdateOneCar = async (req: Request, res:Response)=>{
 
   catch(error){
     console.log(error)
+    res.status(400).json({
+      success: false,
+      message: 'Internal server error',
+      error: ' error ',
+      stack: new Error().stack,
+    });
   }
 }
  /// deleted
   const deletedCarsIdDB = async (req: Request, res:Response)=>{
-    const {carId} = req.params;
+    try{
+      const {carId} = req.params;
     
     if (!carId || carId.trim().length === 0) {
       return res.status(400).json({
@@ -188,6 +195,11 @@ const UpdateOneCar = async (req: Request, res:Response)=>{
       message: 'Car deletd successfully',
       data: {}, 
     });
+    }
+
+    catch(error){
+      console.log(error)
+    }
   }
 export const CarsControlar = {
   createCars,
